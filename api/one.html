@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Posts from JSONPlaceholder</h1>
+
+    <button
+      id="loadBtn"
+      style="
+        background-color: cadetblue;
+        color: rgb(81, 25, 25);
+        padding: 10px;
+        margin-left: 40%;
+        margin-top: 40px;
+        font-size: x-large;
+        cursor: pointer;
+      "
+    >
+      Fetch data from dummyjson
+    </button>
+    <div id="posts"></div>
+  </body>
+
+  <script>
+    const apirequest = "https://api.github.com/users/Najm917";
+    const xhp = new XMLHttpRequest();
+    xhp.open("GET", apirequest);
+
+    xhp.onreadystatechange = function () {
+      console.log(xhp.readyState);
+    };
+    xhp.send();
+    document.getElementById("loadBtn").addEventListener("click", function () {
+      fetch("https://dummyjson.com/posts")
+        .then((response) => response.json())
+        .then((data) => {
+          const postsDiv = document.getElementById("posts");
+          postsDiv.innerHTML = ""; // Clear previous posts
+
+          data.posts.slice(0, 50).forEach((post) => {
+            // Show how maney post you need
+            const postElement = document.createElement("div");
+
+            postElement.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>${post.body}</p>
+                    <hr>
+                `;
+
+            postsDiv.appendChild(postElement);
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching posts:", error);
+        });
+    });
+  </script>
+</html>

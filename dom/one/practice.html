@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM practice</title>
+  </head>
+  <body style="background-color: #212121; color: #fff">
+    <div class="parant">
+      <div class="day">monday</div>
+      <div class="day">tuesday</div>
+      <div class="day">wednesday</div>
+      <div class="day">thursday</div>
+    </div>
+
+    <script>
+      const parant = document.querySelector(".parant");
+      parant.children[1].style.color = "red";
+
+      for (i = 0; i < parant.children.length; i++) {
+        <!-- console.log(parant.children[i].innerHTML); -->
+      }
+
+      const dayOne = document.querySelector(".day");
+      console.log(dayOne);
+      console.log(dayOne.firstChild);
+      console.log(dayOne.nextElementSibling);
+      console.log(dayOne.parentElement);
+    </script>
+  </body>
+</html>
